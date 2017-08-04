@@ -13,7 +13,9 @@
     <sprite>sprites\player_spr</sprite>
     <sprite>sprites\torch_spr</sprite>
   </sprites>
-  <backgrounds name="background"/>
+  <backgrounds name="background">
+    <background>background\background0</background>
+  </backgrounds>
   <paths name="paths"/>
   <objects name="objects">
     <object>objects\object1</object>
