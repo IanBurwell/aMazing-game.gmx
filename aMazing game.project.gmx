@@ -14,7 +14,8 @@
     <sprite>sprites\torch_spr</sprite>
   </sprites>
   <backgrounds name="background">
-    <background>background\background0</background>
+    <background>background\stoneWallTilesetLegacy</background>
+    <background>background\stoneWallTilesset</background>
   </backgrounds>
   <paths name="paths"/>
   <objects name="objects">
