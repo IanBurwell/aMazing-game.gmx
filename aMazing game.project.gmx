@@ -12,7 +12,7 @@
     <sprite>sprites\tracer_spr</sprite>
     <sprite>sprites\player_spr</sprite>
     <sprite>sprites\torch_spr</sprite>
-    <sprite>sprites\sShadeTile</sprite>
+    <sprite>sprites\sShader</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\stoneWallTilesetLegacy</background>
@@ -31,6 +31,7 @@
     </objects>
     <object>objects\tracer</object>
     <object>objects\torch</object>
+    <object>objects\shader</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room0</room>
