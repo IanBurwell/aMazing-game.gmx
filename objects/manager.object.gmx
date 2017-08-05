@@ -8,66 +8,6 @@
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
-    <event eventtype="5" enumb="17">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>//Decoration Code
-for(row = 1; row &lt; (room_width/16)-1; row++ ){
-    for(col = 1; col &lt; (room_height/16)-1; col++ ){
-        //Torches
-        if(global.level[row,col].type == "wall" 
-        &amp;&amp; global.level[row-1,col+1].type == "empty"
-        &amp;&amp; global.level[row-1,col-1].type == "empty"
-        &amp;&amp; global.level[row-1,col].type == "empty"
-        &amp;&amp; global.level[row+1,col+1].type == "empty"
-        &amp;&amp; global.level[row+1,col-1].type == "empty"
-        &amp;&amp; global.level[row+1,col].type == "empty"
-        &amp;&amp; global.level[row,col-1].type == "empty"
-        &amp;&amp; global.level[row,col+1].type == "empty")
-        {
-        global.level[row,col].makeTorch = true
-        }
-        
-        if(global.level[row,col].type == "wall" 
-        &amp;&amp; global.level[row-1,col+1].type == "empty"
-        &amp;&amp; global.level[row-1,col-1].type == "empty"
-        &amp;&amp; global.level[row-1,col].type == "wall"
-        &amp;&amp; global.level[row+1,col+1].type == "empty"
-        &amp;&amp; global.level[row+1,col-1].type == "empty"
-        &amp;&amp; global.level[row+1,col].type == "wall"
-        &amp;&amp; global.level[row,col-1].type == "wall"
-        &amp;&amp; global.level[row,col+1].type == "wall")
-        {
-        tile_add(stoneWallTilesset, 16, 48, 16, 16, row, col, -1) 
-        }
-        
-        if(global.level[row,col].type == "wall" 
-        &amp;&amp; global.level[row-1,col].type == "empty"
-        &amp;&amp; global.level[row+1,col].type == "empty")
-        {
-        tile_add(stoneWallTilesset, 16, 32, 16, 16, row, col, -1) 
-        }
-    }
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
     <event eventtype="6" enumb="53">
       <action>
         <libid>1</libid>
@@ -372,6 +312,59 @@ global.level[row,col].makeEmpty = true;
           <argument>
             <kind>0</kind>
             <string>room_height/2</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="17">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//Decoration Code
+for(row = 1; row &lt; (room_width/16)-1; row++ ){
+    for(col = 1; col &lt; (room_height/16)-1; col++ ){
+        //Torches
+        if(global.level[row,col].type == "wall" 
+        &amp;&amp; global.level[row-1,col+1].type == "empty"
+        &amp;&amp; global.level[row-1,col-1].type == "empty"
+        &amp;&amp; global.level[row-1,col].type == "empty"
+        &amp;&amp; global.level[row+1,col+1].type == "empty"
+        &amp;&amp; global.level[row+1,col-1].type == "empty"
+        &amp;&amp; global.level[row+1,col].type == "empty"
+        &amp;&amp; global.level[row,col-1].type == "empty"
+        &amp;&amp; global.level[row,col+1].type == "empty")
+        {
+        global.level[row,col].makeTorch = true
+        }
+        //darkness
+         if(global.level[row,col].type == "wall" 
+        &amp;&amp; global.level[row-1,col+1].type == "wall"
+        &amp;&amp; global.level[row-1,col-1].type == "wall"
+        &amp;&amp; global.level[row-1,col].type == "wall"
+        &amp;&amp; global.level[row+1,col+1].type == "wall"
+        &amp;&amp; global.level[row+1,col-1].type == "wall"
+        &amp;&amp; global.level[row+1,col].type == "wall"
+        &amp;&amp; global.level[row,col-1].type == "wall"
+        &amp;&amp; global.level[row,col+1].type == "wall")
+        {
+        tile_add(shadingTileset, 80, 32, 16, 16, row*16, col*16, -1) 
+        }
+    }
+}
+</string>
           </argument>
         </arguments>
       </action>
