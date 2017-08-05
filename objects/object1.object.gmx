@@ -29,7 +29,7 @@
           </argument>
           <argument>
             <kind>0</kind>
-            <string>0</string>
+            <string>false</string>
           </argument>
         </arguments>
       </action>
@@ -51,7 +51,7 @@
         <arguments>
           <argument>
             <kind>5</kind>
-            <sprite>-100</sprite>
+            <sprite>player_spr</sprite>
           </argument>
           <argument>
             <kind>0</kind>
@@ -139,7 +139,7 @@
         <arguments>
           <argument>
             <kind>5</kind>
-            <sprite>-100</sprite>
+            <sprite>player_spr_blink</sprite>
           </argument>
           <argument>
             <kind>0</kind>
@@ -187,11 +187,11 @@
           </argument>
           <argument>
             <kind>0</kind>
-            <string>0</string>
+            <string>true</string>
           </argument>
           <argument>
             <kind>4</kind>
-            <string>2</string>
+            <string>0</string>
           </argument>
         </arguments>
       </action>

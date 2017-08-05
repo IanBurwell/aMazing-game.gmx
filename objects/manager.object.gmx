@@ -349,21 +349,53 @@ for(col = 1; col &lt; (room_width/16)-1; col++ ){
         {
         global.level[col,row].makeTorch = true
         }
-        //darkness
-         if(global.level[col,row].type == "wall" 
-        &amp;&amp; global.level[col-1,row+1].type == "wall"
-        &amp;&amp; global.level[col-1,row-1].type == "wall"
-        &amp;&amp; global.level[col-1,row].type == "wall"
-        &amp;&amp; global.level[col+1,row+1].type == "wall"
-        &amp;&amp; global.level[col+1,row-1].type == "wall"
-        &amp;&amp; global.level[col+1,row].type == "wall"
-        &amp;&amp; global.level[col,row-1].type == "wall"
-        &amp;&amp; global.level[col,row+1].type == "wall")
-        {
-        tile_add(shadingTileset, 80, 32, 16, 16, col*16, row*16, -1) 
-        }
+        
+        
     }
 }
+
+/*
+for(col = 0; col &lt; (room_width/16); col++){
+    for(row = 0; row &lt; (room_height/16); row++){
+        dirx = 0;
+        diry = 0;   
+        wallCount = 0;
+        for(ix = -1; ix &lt; 2; ix++){ 
+            for(iy = -1; iy &lt; 2; iy++){
+                if(col+ix &gt;= 0 &amp;&amp; col+ix &lt; array_height_2d(global.level)
+                &amp;&amp; row+iy &gt;= 0 &amp;&amp; row+iy &lt; array_length_2d(global.level, 0)){
+                    if(global.level[col+ix,row+iy].type == "wall") {
+                        dirx += ix;
+                        diry += iy;
+                        wallCount++;
+                    }
+                }else{
+                    dirx += ix;
+                    diry += iy;
+                    wallCount++; 
+                }
+            }
+        }
+        if(global.level[col,row].type == "wall")
+            if( dirx == 0 &amp;&amp; diry == 0 &amp;&amp; wallCount &gt; 7){//dark
+                tile_add(shadingTileset, 80, 32, 16, 16, col*16, row*16, -1);
+            }
+            else if(dirx &gt;= 1 &amp;&amp; diry == 0){//right wall
+                tile_add(shadingTileset, 64, 0, 16, 16, col*16, row*16, -1);
+            }
+            else if(dirx &lt;= -1 &amp;&amp; diry == 0){//left wall
+                tile_add(shadingTileset, 80, 16, 16, 16, col*16, row*16, -1);
+            }
+            else if(dirx == 0 &amp;&amp; diry &gt;= 1){//top wall
+                tile_add(shadingTileset, 80, 0, 16, 16, col*16, row*16, -1);
+            }
+            else if(dirx == 0 &amp;&amp; diry &lt;= -1){//bottom wall
+                tile_add(shadingTileset, 64, 16, 16, 16, col*16, row*16, -1);
+            }
+            
+    }
+}
+*/
 </string>
           </argument>
         </arguments>
