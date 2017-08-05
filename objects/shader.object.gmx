@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>image_speed = 0;
+image_index = 24;
 
 left = 0;
 right = 0;

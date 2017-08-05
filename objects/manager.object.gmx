@@ -339,7 +339,7 @@ global.level[col,row].makeEmpty = true;
           <argument>
             <kind>1</kind>
             <string>//deco code
-
+/*
 for(col = 0; col &lt; (room_width/16); col++ ){
     for(row = 0; row &lt; (room_height/16); row++ ){
         //sets in array coord values
@@ -396,6 +396,7 @@ for(col = 0; col &lt; (room_width/16); col++ ){
         
     }
 }
+*/
 
 for(row = 1; row &lt; (array_length_2d(global.level, 0))-1; row++){
     for(col = 1; col &lt; (array_height_2d(global.level))-1; col++){
