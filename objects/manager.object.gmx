@@ -370,7 +370,7 @@ for(col = 0; col &lt; (room_width/16); col++ ){
         || global.level[col,right].type == "empty"))
         {
         tile_add(stoneWallTileset, irandom_range(0,3)*16, irandom_range(0,3)*16, 16, 16, col*16, row*16, 0)
-        action_if_dice(100)
+        if(action_if_dice(10))
         {
         tile_add(vineTileset, irandom_range(0,3)*16, irandom_range(0,3)*16, 16, 16, col*16, row*16, -1)       
         }
@@ -385,7 +385,7 @@ for(col = 0; col &lt; (room_width/16); col++ ){
         &amp;&amp; global.level[col,left].type == "wall"
         &amp;&amp; global.level[col,right].type == "wall")
         {
-        tile_add(shadingTileset, 80, 32, 16, 16, col*16, row*16, 0)
+        tile_add(shadingTileset, 96, 0, 16, 16, col*16, row*16, 0)
         }
         
         
