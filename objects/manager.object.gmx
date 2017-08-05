@@ -354,7 +354,7 @@ for(col = 1; col &lt; (room_width/16)-1; col++ ){
     }
 }
 
-
+/*
 for(col = 0; col &lt; (room_width/16); col++){
     for(row = 0; row &lt; (room_height/16); row++){
         dirx = 0;
@@ -376,13 +376,26 @@ for(col = 0; col &lt; (room_width/16); col++){
                 }
             }
         }
-        
-        if(global.level[col,row].type == "wall" &amp;&amp; dirx == 0 &amp;&amp; diry == 0 &amp;&amp; wallCount &gt; 7){
-            tile_add(shadingTileset, 80, 32, 16, 16, col*16, row*16, -1);
-        }
-        
+        if(global.level[col,row].type == "wall")
+            if( dirx == 0 &amp;&amp; diry == 0 &amp;&amp; wallCount &gt; 7){//dark
+                tile_add(shadingTileset, 80, 32, 16, 16, col*16, row*16, -1);
+            }
+            else if(dirx &gt;= 1 &amp;&amp; diry == 0){//right wall
+                tile_add(shadingTileset, 64, 0, 16, 16, col*16, row*16, -1);
+            }
+            else if(dirx &lt;= -1 &amp;&amp; diry == 0){//left wall
+                tile_add(shadingTileset, 80, 16, 16, 16, col*16, row*16, -1);
+            }
+            else if(dirx == 0 &amp;&amp; diry &gt;= 1){//top wall
+                tile_add(shadingTileset, 80, 0, 16, 16, col*16, row*16, -1);
+            }
+            else if(dirx == 0 &amp;&amp; diry &lt;= -1){//bottom wall
+                tile_add(shadingTileset, 64, 16, 16, 16, col*16, row*16, -1);
+            }
+            
     }
 }
+*/
 </string>
           </argument>
         </arguments>

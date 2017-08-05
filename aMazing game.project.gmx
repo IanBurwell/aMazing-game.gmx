@@ -12,6 +12,7 @@
     <sprite>sprites\tracer_spr</sprite>
     <sprite>sprites\player_spr</sprite>
     <sprite>sprites\torch_spr</sprite>
+    <sprite>sprites\sShadeTile</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\stoneWallTilesetLegacy</background>
