@@ -346,7 +346,7 @@ for(col = 0; col &lt; (room_width/16); col++ ){
         else {left = row}
         if(row+1 &lt; room_height/16 &amp;&amp; row+1 &gt;=0) {right = row+1}
         else {right = row}
-            
+        //places torches (temp?)    
         if(global.level[col,row].type == "wall" 
         &amp;&amp; global.level[up,left].type == "empty"
         &amp;&amp; global.level[up,right].type == "empty"
@@ -359,53 +359,38 @@ for(col = 0; col &lt; (room_width/16); col++ ){
         {
         global.level[col,row].makeTorch = true
         }
-        
-        
-    }
-}
-
-/*
-for(col = 0; col &lt; (room_width/16); col++){
-    for(row = 0; row &lt; (room_height/16); row++){
-        dirx = 0;
-        diry = 0;   
-        wallCount = 0;
-        for(ix = -1; ix &lt; 2; ix++){ 
-            for(iy = -1; iy &lt; 2; iy++){
-                if(col+ix &gt;= 0 &amp;&amp; col+ix &lt; array_height_2d(global.level)
-                &amp;&amp; row+iy &gt;= 0 &amp;&amp; row+iy &lt; array_length_2d(global.level, 0)){
-                    if(global.level[col+ix,row+iy].type == "wall") {
-                        dirx += ix;
-                        diry += iy;
-                        wallCount++;
-                    }
-                }else{
-                    dirx += ix;
-                    diry += iy;
-                    wallCount++; 
-                }
-            }
+        if(global.level[col,row].type == "wall" 
+        &amp;&amp; (global.level[up,left].type == "empty"
+        || global.level[up,right].type == "empty"
+        || global.level[up,row].type == "empty"
+        || global.level[down,right].type == "empty"
+        || global.level[down,left].type == "empty"
+        || global.level[down,row].type == "empty"
+        || global.level[col,left].type == "empty"
+        || global.level[col,right].type == "empty"))
+        {
+        tile_add(stoneWallTileset, irandom_range(0,3)*16, irandom_range(0,3)*16, 16, 16, col*16, row*16, 0)
+        action_if_dice(100)
+        {
+        tile_add(vineTileset, irandom_range(0,3)*16, irandom_range(0,3)*16, 16, 16, col*16, row*16, -1)       
         }
-        if(global.level[col,row].type == "wall")
-            if( dirx == 0 &amp;&amp; diry == 0 &amp;&amp; wallCount &gt; 7){//dark
-                tile_add(shadingTileset, 80, 32, 16, 16, col*16, row*16, -1);
-            }
-            else if(dirx &gt;= 1 &amp;&amp; diry == 0){//right wall
-                tile_add(shadingTileset, 64, 0, 16, 16, col*16, row*16, -1);
-            }
-            else if(dirx &lt;= -1 &amp;&amp; diry == 0){//left wall
-                tile_add(shadingTileset, 80, 16, 16, 16, col*16, row*16, -1);
-            }
-            else if(dirx == 0 &amp;&amp; diry &gt;= 1){//top wall
-                tile_add(shadingTileset, 80, 0, 16, 16, col*16, row*16, -1);
-            }
-            else if(dirx == 0 &amp;&amp; diry &lt;= -1){//bottom wall
-                tile_add(shadingTileset, 64, 16, 16, 16, col*16, row*16, -1);
-            }
-            
+        }
+         if(global.level[col,row].type == "wall" 
+        &amp;&amp; global.level[up,left].type == "wall"
+        &amp;&amp; global.level[up,right].type == "wall"
+        &amp;&amp; global.level[up,row].type == "wall"
+        &amp;&amp; global.level[down,right].type == "wall"
+        &amp;&amp; global.level[down,left].type == "wall"
+        &amp;&amp; global.level[down,row].type == "wall"
+        &amp;&amp; global.level[col,left].type == "wall"
+        &amp;&amp; global.level[col,right].type == "wall")
+        {
+        tile_add(shadingTileset, 80, 32, 16, 16, col*16, row*16, 0)
+        }
+        
+        
     }
 }
-*/
 </string>
           </argument>
         </arguments>
