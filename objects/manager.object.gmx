@@ -338,21 +338,59 @@ global.level[col,row].makeEmpty = true;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//Decoration Code
-for(col = 1; col &lt; (room_width/16)-1; col++ ){
-    for(row = 1; row &lt; (room_height/16)-1; row++ ){
-        //Torches
+            <string>//deco code
+
+for(col = 0; col &lt; (room_width/16); col++ ){
+    for(row = 0; row &lt; (room_height/16); row++ ){
+        //sets in array coord values
+        if(col-1 &lt; room_width/16 &amp;&amp; col-1 &gt;=0) {up = col-1}
+        else {up = col}
+        if(col+1 &lt; room_width/16 &amp;&amp; col+1 &gt;=0) {down = col+1}
+        else {down = col}
+        if(row-1 &lt; room_height/16 &amp;&amp; row-1 &gt;=0) {left = row-1}
+        else {left = row}
+        if(row+1 &lt; room_height/16 &amp;&amp; row+1 &gt;=0) {right = row+1}
+        else {right = row}
+        //places torches (temp?)    
         if(global.level[col,row].type == "wall" 
-        &amp;&amp; global.level[col-1,row+1].type == "empty"
-        &amp;&amp; global.level[col-1,row-1].type == "empty"
-        &amp;&amp; global.level[col-1,row].type == "empty"
-        &amp;&amp; global.level[col+1,row+1].type == "empty"
-        &amp;&amp; global.level[col+1,row-1].type == "empty"
-        &amp;&amp; global.level[col+1,row].type == "empty"
-        &amp;&amp; global.level[col,row-1].type == "empty"
-        &amp;&amp; global.level[col,row+1].type == "empty")
+        &amp;&amp; global.level[up,left].type == "empty"
+        &amp;&amp; global.level[up,right].type == "empty"
+        &amp;&amp; global.level[up,row].type == "empty"
+        &amp;&amp; global.level[down,right].type == "empty"
+        &amp;&amp; global.level[down,left].type == "empty"
+        &amp;&amp; global.level[down,row].type == "empty"
+        &amp;&amp; global.level[col,left].type == "empty"
+        &amp;&amp; global.level[col,right].type == "empty")
         {
             global.level[col,row].makeTorch = true
+        }
+        if(global.level[col,row].type == "wall" 
+        &amp;&amp; (global.level[up,left].type == "empty"
+        || global.level[up,right].type == "empty"
+        || global.level[up,row].type == "empty"
+        || global.level[down,right].type == "empty"
+        || global.level[down,left].type == "empty"
+        || global.level[down,row].type == "empty"
+        || global.level[col,left].type == "empty"
+        || global.level[col,right].type == "empty"))
+        {
+        tile_add(stoneWallTileset, irandom_range(0,3)*16, irandom_range(0,3)*16, 16, 16, col*16, row*16, 0)
+        if(action_if_dice(10))
+        {
+        tile_add(vineTileset, irandom_range(0,3)*16, irandom_range(0,3)*16, 16, 16, col*16, row*16, -1)       
+        }
+        }
+         if(global.level[col,row].type == "wall" 
+        &amp;&amp; global.level[up,left].type == "wall"
+        &amp;&amp; global.level[up,right].type == "wall"
+        &amp;&amp; global.level[up,row].type == "wall"
+        &amp;&amp; global.level[down,right].type == "wall"
+        &amp;&amp; global.level[down,left].type == "wall"
+        &amp;&amp; global.level[down,row].type == "wall"
+        &amp;&amp; global.level[col,left].type == "wall"
+        &amp;&amp; global.level[col,right].type == "wall")
+        {
+        tile_add(shadingTileset, 96, 0, 16, 16, col*16, row*16, 0)
         }
         
         
@@ -414,7 +452,6 @@ for(row = 1; row &lt; (array_length_2d(global.level, 0))-1; row++){
         
     }
 }
-
 </string>
           </argument>
         </arguments>

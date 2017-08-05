@@ -18,6 +18,8 @@
     <background>background\stoneWallTilesetLegacy</background>
     <background>background\shadingTileset</background>
     <background>background\stoneWallTileset</background>
+    <background>background\vineTileset</background>
+    <background>background\stoneFloorTileset</background>
   </backgrounds>
   <paths name="paths"/>
   <objects name="objects">
