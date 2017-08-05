@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>10</kind>
-            <object>-100</object>
+            <object>Worm</object>
           </argument>
           <argument>
             <kind>0</kind>
@@ -333,19 +333,29 @@ global.level[col,row].makeEmpty = true;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//Decoration Code
-for(col = 1; col &lt; (room_width/16)-1; col++ ){
-    for(row = 1; row &lt; (room_height/16)-1; row++ ){
-        //Torches
+            <string>//deco code
+
+for(col = 0; col &lt; (room_width/16); col++ ){
+    for(row = 0; row &lt; (room_height/16); row++ ){
+        //sets in array coord values
+        if(col-1 &lt; room_width/16 &amp;&amp; col-1 &gt;=0) {up = col-1}
+        else {up = col}
+        if(col+1 &lt; room_width/16 &amp;&amp; col+1 &gt;=0) {down = col+1}
+        else {down = col}
+        if(row-1 &lt; room_height/16 &amp;&amp; row-1 &gt;=0) {left = row-1}
+        else {left = row}
+        if(row+1 &lt; room_height/16 &amp;&amp; row+1 &gt;=0) {right = row+1}
+        else {right = row}
+            
         if(global.level[col,row].type == "wall" 
-        &amp;&amp; global.level[col-1,row+1].type == "empty"
-        &amp;&amp; global.level[col-1,row-1].type == "empty"
-        &amp;&amp; global.level[col-1,row].type == "empty"
-        &amp;&amp; global.level[col+1,row+1].type == "empty"
-        &amp;&amp; global.level[col+1,row-1].type == "empty"
-        &amp;&amp; global.level[col+1,row].type == "empty"
-        &amp;&amp; global.level[col,row-1].type == "empty"
-        &amp;&amp; global.level[col,row+1].type == "empty")
+        &amp;&amp; global.level[up,left].type == "empty"
+        &amp;&amp; global.level[up,right].type == "empty"
+        &amp;&amp; global.level[up,row].type == "empty"
+        &amp;&amp; global.level[down,right].type == "empty"
+        &amp;&amp; global.level[down,left].type == "empty"
+        &amp;&amp; global.level[down,row].type == "empty"
+        &amp;&amp; global.level[col,left].type == "empty"
+        &amp;&amp; global.level[col,right].type == "empty")
         {
         global.level[col,row].makeTorch = true
         }

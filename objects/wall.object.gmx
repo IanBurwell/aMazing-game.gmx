@@ -272,7 +272,7 @@
         <isnot>0</isnot>
       </action>
     </event>
-    <event eventtype="9" enumb="17">
+    <event eventtype="9" enumb="13">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -302,8 +302,6 @@ right = place_meeting(x+dis,y,obj)
 //set sprite
 image_speed = 0;
 image_index = (8*down) + (4*left) + (2*up) + right;
-
-
 </string>
           </argument>
         </arguments>
