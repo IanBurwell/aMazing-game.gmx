@@ -15,7 +15,8 @@
   </sprites>
   <backgrounds name="background">
     <background>background\stoneWallTilesetLegacy</background>
-    <background>background\stoneWallTilesset</background>
+    <background>background\shadingTileset</background>
+    <background>background\stoneWallTileset</background>
   </backgrounds>
   <paths name="paths"/>
   <objects name="objects">
