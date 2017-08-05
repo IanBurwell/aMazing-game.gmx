@@ -80,16 +80,16 @@
           <argument>
             <kind>1</kind>
             <string>//init array
-for(row = 0; row &lt; room_width/16; row++ ){
-    for(col = 0; col &lt; room_height/16; col++ ){
-        global.level[row, col] = instance_create(row*16, col*16, wall);
+for(col = 0; col &lt; room_width/16; col++ ){
+    for(row = 0; row &lt; room_height/16; row++ ){
+        global.level[col, row] = instance_create(col*16, row*16, wall);
     }
 }
 
 //make space for character
-row = floor(object1.x/16);
-col = floor(object1.y/16);
-global.level[row,col].change = true;
+col = floor(object1.x/16);
+row = floor(object1.y/16);
+global.level[col,row].setWall = true;
 
     
 
@@ -141,16 +141,16 @@ global.level[row,col].change = true;
           <argument>
             <kind>1</kind>
             <string>//init array
-for(row = 0; row &lt; room_width/16; row++ ){
-    for(col = 0; col &lt; room_height /16; col++ ){
-        global.level[row, col].makeWall = true;
+for(col = 0; col &lt; room_width/16; col++ ){
+    for(row = 0; row &lt; room_height /16; row++ ){
+        global.level[col, row].makeWall = true;
     }
 }
 
 //make space for character
-row = floor(object1.x/16);
-col = floor(object1.y/16);
-global.level[row,col].makeEmpty = true;
+col = floor(object1.x/16);
+row = floor(object1.y/16);
+global.level[col,row].makeEmpty = true;
 
     
 
@@ -334,33 +334,33 @@ global.level[row,col].makeEmpty = true;
           <argument>
             <kind>1</kind>
             <string>//Decoration Code
-for(row = 1; row &lt; (room_width/16)-1; row++ ){
-    for(col = 1; col &lt; (room_height/16)-1; col++ ){
+for(col = 1; col &lt; (room_width/16)-1; col++ ){
+    for(row = 1; row &lt; (room_height/16)-1; row++ ){
         //Torches
-        if(global.level[row,col].type == "wall" 
-        &amp;&amp; global.level[row-1,col+1].type == "empty"
-        &amp;&amp; global.level[row-1,col-1].type == "empty"
-        &amp;&amp; global.level[row-1,col].type == "empty"
-        &amp;&amp; global.level[row+1,col+1].type == "empty"
-        &amp;&amp; global.level[row+1,col-1].type == "empty"
-        &amp;&amp; global.level[row+1,col].type == "empty"
-        &amp;&amp; global.level[row,col-1].type == "empty"
-        &amp;&amp; global.level[row,col+1].type == "empty")
+        if(global.level[col,row].type == "wall" 
+        &amp;&amp; global.level[col-1,row+1].type == "empty"
+        &amp;&amp; global.level[col-1,row-1].type == "empty"
+        &amp;&amp; global.level[col-1,row].type == "empty"
+        &amp;&amp; global.level[col+1,row+1].type == "empty"
+        &amp;&amp; global.level[col+1,row-1].type == "empty"
+        &amp;&amp; global.level[col+1,row].type == "empty"
+        &amp;&amp; global.level[col,row-1].type == "empty"
+        &amp;&amp; global.level[col,row+1].type == "empty")
         {
-        global.level[row,col].makeTorch = true
+        global.level[col,row].makeTorch = true
         }
         //darkness
-         if(global.level[row,col].type == "wall" 
-        &amp;&amp; global.level[row-1,col+1].type == "wall"
-        &amp;&amp; global.level[row-1,col-1].type == "wall"
-        &amp;&amp; global.level[row-1,col].type == "wall"
-        &amp;&amp; global.level[row+1,col+1].type == "wall"
-        &amp;&amp; global.level[row+1,col-1].type == "wall"
-        &amp;&amp; global.level[row+1,col].type == "wall"
-        &amp;&amp; global.level[row,col-1].type == "wall"
-        &amp;&amp; global.level[row,col+1].type == "wall")
+         if(global.level[col,row].type == "wall" 
+        &amp;&amp; global.level[col-1,row+1].type == "wall"
+        &amp;&amp; global.level[col-1,row-1].type == "wall"
+        &amp;&amp; global.level[col-1,row].type == "wall"
+        &amp;&amp; global.level[col+1,row+1].type == "wall"
+        &amp;&amp; global.level[col+1,row-1].type == "wall"
+        &amp;&amp; global.level[col+1,row].type == "wall"
+        &amp;&amp; global.level[col,row-1].type == "wall"
+        &amp;&amp; global.level[col,row+1].type == "wall")
         {
-        tile_add(shadingTileset, 80, 32, 16, 16, row*16, col*16, -1) 
+        tile_add(shadingTileset, 80, 32, 16, 16, col*16, row*16, -1) 
         }
     }
 }
