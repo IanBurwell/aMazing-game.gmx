@@ -95,15 +95,28 @@ inner = 0;
     else if(top &gt; 0 &amp;&amp; bottom &gt; 0 &amp;&amp; left == 0 &amp;&amp; right &gt; 0)
         image_index = 23;//right end
             
-}else if(inner &lt; 2){
-    if(top == 0 &amp;&amp; bottom &gt; 0 &amp;&amp; left &gt; 0 &amp;&amp; right == 0)
-        image_index = 11;//bottom left outer
+}else if(inner == 1){
+    
+    //confusing corner with partially inner
+    if(top &gt; 0 &amp;&amp; bottom &gt; 1 &amp;&amp; left &gt; 1 &amp;&amp; right &gt; 0)
+        image_index = 26;//bottom left outer
+    else if(top &gt; 1 &amp;&amp; bottom &gt; 0 &amp;&amp; left &gt; 1 &amp;&amp; right &gt; 0)
+        image_index = 27;//top left outer
+    else if(top &gt; 0 &amp;&amp; bottom &gt; 1 &amp;&amp; left &gt; 0 &amp;&amp; right &gt; 1)
+        image_index = 28;//bottom right outer
+    else if(top &gt; 1 &amp;&amp; bottom &gt; 0 &amp;&amp; left &gt; 0 &amp;&amp; right &gt; 1)
+        image_index = 29;//top right outer 
+    
+    //inner corners
+    else if(top == 0 &amp;&amp; bottom &gt; 0 &amp;&amp; left &gt; 0 &amp;&amp; right == 0)
+        image_index = 11;//bottom left inner
     else if(top &gt; 0 &amp;&amp; bottom == 0 &amp;&amp; left &gt; 0 &amp;&amp; right == 0)
-        image_index = 12;//top left outer
+        image_index = 12;//top left inner
     else if(top == 0 &amp;&amp; bottom &gt; 0 &amp;&amp; left == 0 &amp;&amp; right &gt; 0)
-        image_index = 13;//bottom right outer
+        image_index = 13;//bottom right inner
     else if(top &gt; 0 &amp;&amp; bottom == 0 &amp;&amp; left == 0 &amp;&amp; right &gt; 0)
-        image_index = 14;//top right outer
+        image_index = 14;//top right inner   
+        
 }else if(inner == 2){
     if(top &gt; 0 &amp;&amp; bottom &gt; 0 &amp;&amp; left &gt; 0 &amp;&amp; right == 0)
         image_index = 15;//left T

@@ -416,13 +416,13 @@ for(row = 1; row &lt; (array_length_2d(global.level, 0))-1; row++){
             shaderMap[col,row].empty = 1;
             
             if(right)
-                shaderMap[col+1,row].left++;
+                shaderMap[col+1,row].left+=2;
             if(left)
-                shaderMap[col-1,row].right++;
+                shaderMap[col-1,row].right+=2;
             if(top)
-                shaderMap[col,row-1].bottom++;
+                shaderMap[col,row-1].bottom+=2;
             if(bottom)
-                shaderMap[col,row+1].top++;
+                shaderMap[col,row+1].top+=2;
             
             
             if(top_right &amp;&amp; top &amp;&amp; right){
