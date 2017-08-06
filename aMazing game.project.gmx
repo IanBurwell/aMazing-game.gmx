@@ -11,8 +11,8 @@
     <sprite>sprites\temp</sprite>
     <sprite>sprites\tracer_spr</sprite>
     <sprite>sprites\player_spr</sprite>
-    <sprite>sprites\torch_spr</sprite>
     <sprite>sprites\sShader</sprite>
+    <sprite>sprites\torch_spr</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\stoneWallTilesetLegacy</background>
@@ -20,6 +20,7 @@
     <background>background\stoneWallTileset</background>
     <background>background\vineTileset</background>
     <background>background\stoneFloorTileset</background>
+    <background>background\crackTileset</background>
   </backgrounds>
   <paths name="paths"/>
   <objects name="objects">

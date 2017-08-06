@@ -200,11 +200,11 @@ global.level[col,row].makeEmpty = true;
           </argument>
           <argument>
             <kind>0</kind>
-            <string>1</string>
+            <string>2</string>
           </argument>
           <argument>
             <kind>0</kind>
-            <string>1</string>
+            <string>2</string>
           </argument>
         </arguments>
       </action>
@@ -228,39 +228,11 @@ global.level[col,row].makeEmpty = true;
           </argument>
           <argument>
             <kind>0</kind>
-            <string>room_width-1</string>
+            <string>room_width-2</string>
           </argument>
           <argument>
             <kind>0</kind>
-            <string>room_height-1</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>201</id>
-        <kind>0</kind>
-        <userelative>-1</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_create_object</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>10</kind>
-            <object>Worm</object>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>room_width/2</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>1</string>
+            <string>room_height-2</string>
           </argument>
         </arguments>
       </action>
@@ -288,7 +260,35 @@ global.level[col,row].makeEmpty = true;
           </argument>
           <argument>
             <kind>0</kind>
-            <string>room_height-1</string>
+            <string>2</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>201</id>
+        <kind>0</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_create_object</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>10</kind>
+            <object>Worm</object>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>room_width/2</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>room_height-2</string>
           </argument>
         </arguments>
       </action>
@@ -339,7 +339,7 @@ global.level[col,row].makeEmpty = true;
           <argument>
             <kind>1</kind>
             <string>//deco code
-/*
+
 for(col = 0; col &lt; (room_width/16); col++ ){
     for(row = 0; row &lt; (room_height/16); row++ ){
         //sets in array coord values
@@ -380,7 +380,7 @@ for(col = 0; col &lt; (room_width/16); col++ ){
         tile_add(vineTileset, irandom_range(0,3)*16, irandom_range(0,3)*16, 16, 16, col*16, row*16, -1)       
         }
         }
-         if(global.level[col,row].type == "wall" 
+        /*if(global.level[col,row].type == "wall" 
         &amp;&amp; global.level[up,left].type == "wall"
         &amp;&amp; global.level[up,right].type == "wall"
         &amp;&amp; global.level[up,row].type == "wall"
@@ -392,11 +392,11 @@ for(col = 0; col &lt; (room_width/16); col++ ){
         {
         tile_add(shadingTileset, 96, 0, 16, 16, col*16, row*16, 0)
         }
-        
+        */
         
     }
 }
-*/
+
 
 for(row = 1; row &lt; (array_length_2d(global.level, 0))-1; row++){
     for(col = 1; col &lt; (array_height_2d(global.level))-1; col++){
@@ -429,6 +429,7 @@ for(row = 1; row &lt; (array_length_2d(global.level, 0))-1; row++){
                 shaderMap[col+1,row-1].left++;
                 shaderMap[col+1,row-1].bottom++;                
                 shaderMap[col+1,row-1].inner++;
+                shaderMap[col+1,row-1].top_right++;//this is to differentiate the final 2 shading types, which are completly similar in LRUD metrics
             }
             if(top_left &amp;&amp; top &amp;&amp; left){
                 shaderMap[col-1,row-1].right++;

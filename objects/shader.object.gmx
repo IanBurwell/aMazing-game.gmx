@@ -32,6 +32,7 @@ left = 0;
 right = 0;
 top = 0;
 bottom = 0;
+top_right = 0;//see manager ctrl
 
 empty = 0;
 inner = 0;
@@ -57,11 +58,13 @@ inner = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(inner == 0){
-    if(empty)//light
-        image_index = 24;
+            <string>
+if(inner == 0){
+
+    if(empty)
+        image_index = 24;//light 
     else if(top == 0 &amp;&amp; bottom == 0 &amp;&amp; left == 0 &amp;&amp; right == 0)
-        image_index = 0;
+        image_index = 0;//darkness
         
     else if(top == 0 &amp;&amp; bottom == 0 &amp;&amp; left &gt; 0 &amp;&amp; right == 0)
         image_index = 1;//left
@@ -82,9 +85,9 @@ inner = 0;
         image_index = 8;//top right outer
         
     else if(top &gt; 0 &amp;&amp; bottom &gt; 0 &amp;&amp; left == 0 &amp;&amp; right == 0)
-        image_index = 9;//top bottom
+        image_index = 9;//vertical thin straight
     else if(top == 0 &amp;&amp; bottom == 0 &amp;&amp; left &gt; 0 &amp;&amp; right &gt; 0)
-        image_index = 10;//left right
+        image_index = 10;//horizontal thin straight
         
     else if(top &gt; 0 &amp;&amp; bottom &gt; 0 &amp;&amp; left &gt; 0 &amp;&amp; right == 0)
         image_index = 20;//left end
@@ -94,10 +97,13 @@ inner = 0;
         image_index = 22;//bottom end
     else if(top &gt; 0 &amp;&amp; bottom &gt; 0 &amp;&amp; left == 0 &amp;&amp; right &gt; 0)
         image_index = 23;//right end
-            
+        
+    else if(top &gt; 0 &amp;&amp; bottom &gt; 0 &amp;&amp; left &gt; 0 &amp;&amp; right &gt; 0)   
+        image_index = 38;//floating block  
+          
 }else if(inner == 1){
     
-    //confusing corner with partially inner
+    //thin corner
     if(top &gt; 0 &amp;&amp; bottom &gt; 1 &amp;&amp; left &gt; 1 &amp;&amp; right &gt; 0)
         image_index = 26;//bottom left outer
     else if(top &gt; 1 &amp;&amp; bottom &gt; 0 &amp;&amp; left &gt; 1 &amp;&amp; right &gt; 0)
@@ -115,9 +121,31 @@ inner = 0;
     else if(top == 0 &amp;&amp; bottom &gt; 0 &amp;&amp; left == 0 &amp;&amp; right &gt; 0)
         image_index = 13;//bottom right inner
     else if(top &gt; 0 &amp;&amp; bottom == 0 &amp;&amp; left == 0 &amp;&amp; right &gt; 0)
-        image_index = 14;//top right inner   
+        image_index = 14;//top right inner 
         
+    //annotated in case i forget how this all works
+    else if(top &gt; 1 //if there is an opening directly above it
+    &amp;&amp; bottom &gt; 0 //and an opening diagonally below
+    &amp;&amp; left &gt; 0 //and an opening diagonally left
+    &amp;&amp; right == 0) //and there is no opening to the right
+        image_index = 32;//top left corner w/ horizontal thin  
+    else if(top &gt; 0 &amp;&amp; bottom == 0 &amp;&amp; left &gt; 0 &amp;&amp; right &gt; 1)
+        image_index = 33;//top right corner w/ vertical thin
+    else if(top &gt; 0 &amp;&amp; bottom &gt; 1 &amp;&amp; left == 0 &amp;&amp; right &gt; 0)
+        image_index = 37;//bottom right corner w/ horizontal thin 
+    else if(top == 0 &amp;&amp; bottom &gt; 0 &amp;&amp; left &gt; 1 &amp;&amp; right &gt; 0)
+        image_index = 36;//bottom left corner w/ vertical thin   
+    else if(top &gt; 0 &amp;&amp; bottom == 0 &amp;&amp; left &gt; 1 &amp;&amp; right &gt; 0)
+        image_index = 39;//top left corner w/ vertical thin
+    else if(top &gt; 1 &amp;&amp; bottom &gt; 0 &amp;&amp; left == 0 &amp;&amp; right &gt; 0)
+        image_index = 40; //top right corner w/ horizontal thin     
+    else if(top &gt; 0 &amp;&amp; bottom &gt; 1 &amp;&amp; left &gt; 0 &amp;&amp; right == 0)
+        image_index = 41;//bottom right corner w/ vertical thin 
+    else if(top == 0 &amp;&amp; bottom &gt; 0 &amp;&amp; left &gt; 0 &amp;&amp; right &gt; 1)
+        image_index = 42; //bottom left corner w/ horizontal thin
+                   
 }else if(inner == 2){
+
     if(top &gt; 0 &amp;&amp; bottom &gt; 0 &amp;&amp; left &gt; 0 &amp;&amp; right == 0)
         image_index = 15;//left T
     else if(top &gt; 0 &amp;&amp; bottom == 0 &amp;&amp; left &gt; 0 &amp;&amp; right &gt; 0)
@@ -126,11 +154,38 @@ inner = 0;
         image_index = 17;//bottom T
     else if(top &gt; 0 &amp;&amp; bottom &gt; 0 &amp;&amp; left == 0 &amp;&amp; right &gt; 0)
         image_index = 18;//right T
+    else if(top &gt; 1 &amp;&amp; bottom &gt; 1 &amp;&amp; left &gt; 0 &amp;&amp; right &gt; 0 &amp;&amp; top_right == 0)
+        image_index = 30 //top thin T
+    else if(top &gt; 1 &amp;&amp; bottom &gt; 1 &amp;&amp; left &gt; 0 &amp;&amp; right &gt; 0 &amp;&amp; top_right &gt; 0)
+        image_index = 35 //bottom thin T 
+    else if(top &gt; 0 &amp;&amp; bottom &gt; 0 &amp;&amp; left &gt; 1 &amp;&amp; right &gt; 1 &amp;&amp; top_right == 0)
+        image_index = 31 //right thin T 
+    else if(top &gt; 0 &amp;&amp; bottom &gt; 0 &amp;&amp; left &gt; 1 &amp;&amp; right &gt; 1 &amp;&amp; top_right &gt; 0)
+        image_index = 34 //left thin T
     
-    //TODO double inner corners
+        
+        
+        
+        
+        
+        
+    else if(top = 1 &amp;&amp; bottom = 1 &amp;&amp; left = 1 &amp;&amp; right = 1 &amp;&amp; top_right = 1)
+        image_index = 48;//top left to bottom right corner overlap
+    else if(top = 1 &amp;&amp; bottom = 1 &amp;&amp; left = 1 &amp;&amp; right = 1 &amp;&amp; top_right == 0)
+        image_index = 47;//top right to bottom left corner overlap
+
 }else if(inner == 3){
+
+    if(top &gt; 0 &amp;&amp; bottom &gt; 1 &amp;&amp; left &gt; 1 &amp;&amp; right &gt; 0)
+        image_index = 44;//bottom left corner to both thins
+    if(top &gt; 0 &amp;&amp; bottom &gt; 1 &amp;&amp; left &gt; 0 &amp;&amp; right &gt; 1)
+        image_index = 43;//bottom right corner to both thins
+    if(top &gt; 1 &amp;&amp; bottom &gt; 0 &amp;&amp; left &gt; 1 &amp;&amp; right &gt; 0)
+        image_index = 46;//top left corner to both sides
+    if(top &gt; 1 &amp;&amp; bottom &gt; 0 &amp;&amp; left &gt; 0 &amp;&amp; right &gt; 1)
+        image_index = 45;//top right corner to both sides
     
-}else{
+}else {
     image_index = 19;//center junction
 }
 

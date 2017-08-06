@@ -112,7 +112,7 @@ alarm_set(11,1)
           </argument>
           <argument>
             <kind>0</kind>
-            <string>50</string>
+            <string>250</string>
           </argument>
           <argument>
             <kind>4</kind>
