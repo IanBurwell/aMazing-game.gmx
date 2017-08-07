@@ -126,7 +126,8 @@ inner = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(inner == 0){
+
+if(inner == 0){
     if(empty)
         image_index = 24;//light 
     else if(top == 0 &amp;&amp; bottom == 0 &amp;&amp; left == 0 &amp;&amp; right == 0)
