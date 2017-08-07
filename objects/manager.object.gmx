@@ -65,6 +65,30 @@
       </action>
       <action>
         <libid>1</libid>
+        <id>611</id>
+        <kind>6</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>global.wormsDone</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>0</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
         <id>603</id>
         <kind>7</kind>
         <userelative>0</userelative>
@@ -79,7 +103,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//init array
+            <string>global.rooms = ds_list_create();
+
+//init array
 for(col = 0; col &lt; room_width/16; col++ ){
     for(row = 0; row &lt; room_height/16; row++ ){
         global.level[col, row] = instance_create(col*16, row*16, wall);
@@ -370,8 +396,8 @@ inner = 0;
           <argument>
             <kind>1</kind>
             <string>//reset shaders
-for(row = 0; row &lt; (array_length_2d(global.level, 0))-1; row++){
-    for(col = 0; col &lt; (array_height_2d(global.level))-1; col++){
+for(row = 0; row &lt; (array_length_2d(global.level, 0)); row++){
+    for(col = 0; col &lt; (array_height_2d(global.level)); col++){
         shaderMap[col, row].reset = true;
     }
 }
@@ -491,6 +517,65 @@ for(row = 1; row &lt; (array_length_2d(global.level, 0))-1; row++){
 for(row = 0; row &lt; (array_length_2d(global.level, 0))-1; row++){
     for(col = 0; col &lt; (array_height_2d(global.level))-1; col++){
         shaderMap[col,row].update = true;
+    }
+}
+
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="13">
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>check for rooms</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//todo taking out car declarations might speed it up a bit
+for(row = 0; row &lt; (array_length_2d(global.level, 0)); row++){
+    for(col = 0; col &lt; (array_height_2d(global.level)); col++){
+        
+        for(ri = 0; ri &lt; ds_list_size(global.rooms); ri++){
+            dsroom = global.rooms[| ri];
+            for(i = 0; i &lt; ds_list_size(dsroom); i++){
+                cell = dsroom[| i];
+                if(cell[0] != col &amp;&amp; cell[1] != row)
+                    ;//TODO run function to create new room and add all surrounding tiles to the room
+            }       
+        }
+    
     }
 }
 
