@@ -70,26 +70,6 @@ alarm_set(11,1)
           </argument>
         </arguments>
       </action>
-      <action>
-        <libid>1</libid>
-        <id>405</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>-1</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_if_dice</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>0</kind>
-            <string>2</string>
-          </argument>
-        </arguments>
-      </action>
     </event>
     <event eventtype="2" enumb="11">
       <action>
@@ -112,7 +92,7 @@ alarm_set(11,1)
           </argument>
           <argument>
             <kind>0</kind>
-            <string>50</string>
+            <string>250</string>
           </argument>
           <argument>
             <kind>4</kind>
@@ -154,10 +134,10 @@ for(i = 4 + 1; i &gt;= 1; i--){
 }  
 
 //make sure it doesnt go off the edge
-if(pathY&lt;=0) up = 0;
-if(pathX&lt;=0) left = 0;
-if(pathY&gt;=array_length_2d(global.level, 0)-1) down = 0;
-if(pathX&gt;=array_height_2d(global.level)-1) right = 0;
+if(pathY&lt;=1) up = 0;
+if(pathX&lt;=1) left = 0;
+if(pathY&gt;=array_length_2d(global.level, 0)-2) down = 0;
+if(pathX&gt;=array_height_2d(global.level)-2) right = 0;
 
 //make sure none of the weights are negative
 if(up&lt;0) up = 0;
@@ -189,134 +169,6 @@ alarm_set(11, 1);
         <libid>1</libid>
         <id>421</id>
         <kind>3</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>203</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_kill_object</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-    </event>
-    <event eventtype="2" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>423</id>
-        <kind>5</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>0</kind>
-            <string>200</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>422</id>
-        <kind>1</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>//init
-randomize();
-up = 1;
-down = 1;
-left = 1;
-right = 1;
-
-
-
-//finds empty
-for(i = 4 + 1; i &gt;= 1; i--){
-    if(pathY&gt;i &amp;&amp; global.level[pathX,pathY-i].type == "wall") up += i*i;
-    if(pathY&lt;array_length_2d(global.level, 0)-i &amp;&amp; global.level[pathX,pathY+i].type == "wall") down += i*i;
-    if(pathX&gt;i &amp;&amp; global.level[pathX-i,pathY].type == "wall") left += i*i;
-    if(pathX&lt;array_height_2d(global.level)-i &amp;&amp; global.level[pathX+i,pathY].type == "wall") right += i*i;
-}  
-
-//make sure it doesnt go off the edge
-if(pathY&lt;=0) up = 0;
-if(pathX&lt;=0) left = 0;
-if(pathY&gt;=array_length_2d(global.level, 0)-1) down = 0;
-if(pathX&gt;=array_height_2d(global.level)-1) right = 0;
-
-//make sure none of the weights are negative
-if(up&lt;0) up = 0;
-if(down&lt;0) down = 0;
-if(up&lt;0) up = 0;
-if(down&lt;0) down = 0;
- 
-//choose direction to move
-val = irandom_range(1,up+down+left+right);
-val += 0;
-if(val &gt;= 1 &amp;&amp; val &lt;= up) pathY--;
-else if(val &gt; up &amp;&amp; val &lt;= up+down) pathY++;
-else if(val &gt; up+down &amp;&amp; val &lt;= up+down+left) pathX--;
-else pathX++;    
-
-x = pathX * 16;
-y = pathY * 16;   
-global.level[pathX,pathY].makeEmpty = true;
-//instance_create(x,y,tracer);
-//global.tracer_value--;
-path_size++;
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>424</id>
-        <kind>2</kind>
         <userelative>0</userelative>
         <isquestion>0</isquestion>
         <useapplyto>0</useapplyto>
