@@ -23,6 +23,10 @@
     <background>background\crackTileset</background>
   </backgrounds>
   <paths name="paths"/>
+  <scripts name="scripts">
+    <script>scripts\recursive_room_find.gml</script>
+    <script>scripts\tile_in_room.gml</script>
+  </scripts>
   <objects name="objects">
     <object>objects\object1</object>
     <object>objects\Worm</object>
