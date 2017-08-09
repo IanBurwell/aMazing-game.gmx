@@ -49,17 +49,13 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
-randomize();
+            <string>randomize();
 global.tracer_value = 255
 
 pathX = floor(x/16);
 pathY = floor(y/16);
-pastX = pathX;
-pastY = pathY;
  
 global.level[pathX,pathY].makeEmpty = true;
-
 
 image_blend = make_colour_hsv(random(255), 255, 255);
 
@@ -118,14 +114,15 @@ alarm_set(11,1)
             <kind>1</kind>
             <string>//init
 randomize();
-up = 1;
-down = 1;
-left = 1;
-right = 1;
+var up = 1;
+var down = 1;
+var left = 1;
+var right = 1;
 
 
 
 //finds empty
+var i;
 for(i = 4 + 1; i &gt;= 1; i--){
     if(pathY&gt;i &amp;&amp; global.level[pathX,pathY-i].type == "wall") up += i*i;
     if(pathY&lt;array_length_2d(global.level, 0)-i &amp;&amp; global.level[pathX,pathY+i].type == "wall") down += i*i;
@@ -146,8 +143,7 @@ if(up&lt;0) up = 0;
 if(down&lt;0) down = 0;
  
 //choose direction to move
-val = irandom_range(1,up+down+left+right);
-val += 0;
+var val = irandom_range(1,up+down+left+right);
 if(val &gt;= 1 &amp;&amp; val &lt;= up) pathY--;
 else if(val &gt; up &amp;&amp; val &lt;= up+down) pathY++;
 else if(val &gt; up+down &amp;&amp; val &lt;= up+down+left) pathX--;

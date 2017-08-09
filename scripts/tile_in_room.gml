@@ -7,7 +7,7 @@ if(!ds_exists(dsroom, ds_type_list)) return false;
 
 for(i = 0; i < ds_list_size(dsroom); i++){
     var cell = dsroom[| i];
-    if(!ds_exists(cell, ds_type_list)) continue;
+    if(is_undefined(cell) || !ds_exists(cell, ds_type_list)) continue;
 
     if(cell[| 0] == tilex && cell[| 1] == tiley) return true;
 }

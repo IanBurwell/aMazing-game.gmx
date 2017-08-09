@@ -8,6 +8,36 @@
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>update_rooms();
+
+if(ds_list_size(global.rooms) &gt; 1){
+    connect_rooms();
+    update_rooms();
+    alarm_set(1,1);
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="6" enumb="53">
       <action>
         <libid>1</libid>
@@ -103,11 +133,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-
             <string>//TODO add var infront of for loops etc
 global.rooms = ds_list_create();
 
 //init array
+var row,col;
 for(col = 0; col &lt; room_width/16; col++ ){
     for(row = 0; row &lt; room_height/16; row++ ){
         global.level[col, row] = instance_create(col*16, row*16, wall);
@@ -149,14 +179,17 @@ for(col = 0; col &lt; room_width/16; col++ ){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>for(ri = 0; ri &lt; ds_list_size(global.rooms); ri++){
-    var dsroom = global.rooms[| ri];
-    random_set_seed(dsroom);
-    draw_set_color(make_colour_hsv(random(255), 255, 255));
-    for(i = 0; i &lt; ds_list_size(dsroom); i++){
-        var cell = dsroom[| i];
-        draw_rectangle(16*cell[| 0], 16*cell[| 1], (16*cell[| 0])+16, (16*cell[| 1])+16, false);
-    }       
+            <string>if(DEBUG){
+    var ri, i;
+    for(ri = 0; ri &lt; ds_list_size(global.rooms); ri++){
+        var dsroom = global.rooms[| ri];
+        random_set_seed(dsroom);
+        draw_set_color(make_colour_hsv(random(255), 255, 255));
+        for(i = 0; i &lt; ds_list_size(dsroom); i++){
+            var cell = dsroom[| i];
+            draw_rectangle(16*cell[| 0], 16*cell[| 1], (16*cell[| 0])+16, (16*cell[| 1])+16, false);
+        }       
+    }
 }
 </string>
           </argument>
@@ -205,6 +238,7 @@ for(col = 0; col &lt; room_width/16; col++ ){
           <argument>
             <kind>1</kind>
             <string>//init array
+var row, col;
 for(col = 0; col &lt; room_width/16; col++ ){
     for(row = 0; row &lt; room_height /16; row++ ){
         global.level[col, row].makeWall = true;
@@ -430,6 +464,7 @@ inner = 0;
             <kind>1</kind>
             <string>
 //deco code
+var row, col;
 for(col = 0; col &lt; (room_width/16); col++ ){
     for(row = 0; row &lt; (room_height/16); row++ ){
         //sets in array coord values
@@ -442,7 +477,7 @@ for(col = 0; col &lt; (room_width/16); col++ ){
         if(row+1 &lt; room_height/16 &amp;&amp; row+1 &gt;=0) {right = row+1}
         else {right = row}
         //places torches (temp?)    
-        if(global.level[col,row].type == "wall" 
+        /*if(global.level[col,row].type == "wall" 
         &amp;&amp; global.level[up,left].type == "empty"
         &amp;&amp; global.level[up,right].type == "empty"
         &amp;&amp; global.level[up,row].type == "empty"
@@ -453,7 +488,8 @@ for(col = 0; col &lt; (room_width/16); col++ ){
         &amp;&amp; global.level[col,right].type == "empty")
         {
             global.level[col,row].makeTorch = true
-        }
+        }*///with tilesets torches are hidden behind a "phantom block"
+        
         if(global.level[col,row].type == "wall" 
         &amp;&amp; (global.level[up,left].type == "empty"
         || global.level[up,right].type == "empty"
@@ -493,15 +529,15 @@ for(row = 1; row &lt; (array_length_2d(global.level, 0))-1; row++){
         
         if(global.level[col, row].type == "empty"){
             
-            right = global.level[col+1, row].type != "empty";
-            left = global.level[col-1, row].type != "empty";
-            top = global.level[col, row-1].type != "empty";
-            bottom = global.level[col, row+1].type != "empty";
+            var right = global.level[col+1, row].type != "empty";
+            var left = global.level[col-1, row].type != "empty";
+            var top = global.level[col, row-1].type != "empty";
+            var bottom = global.level[col, row+1].type != "empty";
             
-            top_right = global.level[col+1, row-1].type != "empty";
-            top_left = global.level[col-1, row-1].type != "empty";
-            bottom_right = global.level[col+1, row+1].type != "empty";
-            bottom_left = global.level[col-1, row+1].type != "empty";
+            var top_right = global.level[col+1, row-1].type != "empty";
+            var top_left = global.level[col-1, row-1].type != "empty";
+            var bottom_right = global.level[col+1, row+1].type != "empty";
+            var bottom_left = global.level[col-1, row+1].type != "empty";
             
             shaderMap[col,row].empty = 1;
             
@@ -570,50 +606,31 @@ for(row = 0; row &lt; (array_length_2d(global.level, 0)); row++){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>check for rooms</string>
+            <string>connect rooms</string>
           </argument>
         </arguments>
       </action>
       <action>
         <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
+        <id>301</id>
+        <kind>0</kind>
+        <userelative>-1</userelative>
         <isquestion>0</isquestion>
         <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
+        <exetype>1</exetype>
+        <functionname>action_set_alarm</functionname>
         <codestring></codestring>
         <whoName>self</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
         <arguments>
           <argument>
-            <kind>1</kind>
-            <string>//todo taking out car declarations might speed it up a bit
-for(row = 0; row &lt; (array_length_2d(global.level, 0)); row++){
-    for(col = 0; col &lt; (array_height_2d(global.level)); col++){
-        if(global.level[col, row].type != 'empty')continue;        
-        var inRoom = false;
-        for(ri = 0; ri &lt; ds_list_size(global.rooms); ri++){
-            var droom = global.rooms[| ri];
-            for(i = 0; i &lt; ds_list_size(droom); i++){
-                var cell = droom[| i];
-                if(cell[| 0] == col &amp;&amp; cell[| 1] == row)
-                    inRoom = true;
-            }       
-        }
-        if(!inRoom){
-            var dsrm = ds_list_create();
-            ds_list_add(global.rooms, dsrm);
-            recursive_room_find(dsrm, col, row);
-        }
-        
-    }
-}
-
-
-</string>
+            <kind>0</kind>
+            <string>1</string>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>1</string>
           </argument>
         </arguments>
       </action>

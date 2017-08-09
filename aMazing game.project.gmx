@@ -24,8 +24,13 @@
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
-    <script>scripts\recursive_room_find.gml</script>
-    <script>scripts\tile_in_room.gml</script>
+    <script>scripts\distance_points.gml</script>
+    <scripts name="rooms">
+      <script>scripts\recursive_room_find.gml</script>
+      <script>scripts\tile_in_room.gml</script>
+      <script>scripts\update_rooms.gml</script>
+      <script>scripts\connect_rooms.gml</script>
+    </scripts>
   </scripts>
   <objects name="objects">
     <object>objects\object1</object>
@@ -45,6 +50,9 @@
   <rooms name="rooms">
     <room>rooms\room0</room>
   </rooms>
+  <constants number="1">
+    <constant name="DEBUG">false</constant>
+  </constants>
   <help>
     <rtf>help.rtf</rtf>
   </help>
