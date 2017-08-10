@@ -24,12 +24,17 @@
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
-    <script>scripts\distance_points.gml</script>
     <scripts name="rooms">
       <script>scripts\recursive_room_find.gml</script>
       <script>scripts\tile_in_room.gml</script>
       <script>scripts\update_rooms.gml</script>
       <script>scripts\connect_rooms.gml</script>
+    </scripts>
+    <scripts name="helper">
+      <script>scripts\distance_points.gml</script>
+    </scripts>
+    <scripts name="manager">
+      <script>scripts\start_worms.gml</script>
     </scripts>
   </scripts>
   <objects name="objects">
@@ -46,6 +51,7 @@
       <object>objects\torch</object>
       <object>objects\shader</object>
     </objects>
+    <object>objects\loading_screen</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room0</room>

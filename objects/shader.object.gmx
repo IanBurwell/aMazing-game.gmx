@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>image_speed = 0;
+            <string>//init
+
+image_speed = 0;
 image_index = 24;
 
 update = false;
@@ -126,7 +128,7 @@ inner = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
+            <string>//using values set by manager, we decide what shader to use
 if(inner == 0){
     if(empty)
         image_index = 24;//light 
@@ -229,12 +231,6 @@ if(inner == 0){
         image_index = 31 //right thin T 
     else if(top &gt; 0 &amp;&amp; bottom &gt; 0 &amp;&amp; left &gt; 1 &amp;&amp; right &gt; 1 &amp;&amp; top_right &gt; 0)
         image_index = 34 //left thin T
-    
-        
-        
-        
-        
-        
         
     else if(top = 1 &amp;&amp; bottom = 1 &amp;&amp; left = 1 &amp;&amp; right = 1 &amp;&amp; top_right = 1)
         image_index = 48;//top left to bottom right corner overlap

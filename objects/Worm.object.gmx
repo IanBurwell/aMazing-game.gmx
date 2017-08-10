@@ -49,9 +49,13 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>randomize();
-global.tracer_value = 255
+            <string>//init
 
+path_size = 0;
+path_length = 200;
+
+randomize();
+global.tracer_value = 255
 pathX = floor(x/16);
 pathY = floor(y/16);
  
@@ -88,7 +92,7 @@ alarm_set(11,1)
           </argument>
           <argument>
             <kind>0</kind>
-            <string>20</string>
+            <string>path_length</string>
           </argument>
           <argument>
             <kind>4</kind>

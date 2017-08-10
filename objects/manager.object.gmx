@@ -26,11 +26,17 @@
           <argument>
             <kind>1</kind>
             <string>update_rooms();
-
+//repeats joining first two rooms then updates rooms (stupidly inefficient should not update rooms)
 if(ds_list_size(global.rooms) &gt; 1){
     connect_rooms();
     update_rooms();
     alarm_set(1,1);
+}else{
+    //triger shaders etc.
+    event_user(0);
+    with(loading_screen){
+        text = 'Applying textures..'
+    }
 }
 
 </string>
@@ -38,7 +44,171 @@ if(ds_list_size(global.rooms) &gt; 1){
         </arguments>
       </action>
     </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>612</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>-1</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_if_variable</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>0</kind>
+            <string>DEBUG</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>false</string>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>0</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>612</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>-1</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_if_variable</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>0</kind>
+            <string>global.wormsDone</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>5</string>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>4</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>422</id>
+        <kind>1</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>611</id>
+        <kind>6</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>global.wormsDone</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>-1</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//connect rooms
+alarm_set(1,1);
+
+with(loading_screen){
+    text = 'Connecting rooms...'
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>424</id>
+        <kind>2</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
+    </event>
     <event eventtype="6" enumb="53">
+      <action>
+        <libid>1</libid>
+        <id>612</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>-1</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_if_variable</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>0</kind>
+            <string>DEBUG</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>true</string>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>0</string>
+          </argument>
+        </arguments>
+      </action>
       <action>
         <libid>1</libid>
         <id>201</id>
@@ -64,6 +234,225 @@ if(ds_list_size(global.rooms) &gt; 1){
           <argument>
             <kind>0</kind>
             <string>floor(mouse_y/16)*16</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="10">
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>shaders and aesthetics</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>shader</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//init
+image_index = 24;
+
+left = 0;
+right = 0;
+top = 0;
+bottom = 0;
+top_right = 0;
+empty = 0;
+inner = 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>
+//deco code
+var row, col;
+for(col = 0; col &lt; (room_width/16); col++ ){
+    for(row = 0; row &lt; (room_height/16); row++ ){
+        //sets in array coord values
+        if(col-1 &lt; room_width/16 &amp;&amp; col-1 &gt;=0) {up = col-1}
+        else {up = col}
+        if(col+1 &lt; room_width/16 &amp;&amp; col+1 &gt;=0) {down = col+1}
+        else {down = col}
+        if(row-1 &lt; room_height/16 &amp;&amp; row-1 &gt;=0) {left = row-1}
+        else {left = row}
+        if(row+1 &lt; room_height/16 &amp;&amp; row+1 &gt;=0) {right = row+1}
+        else {right = row}
+        //places torches (temp?)    
+        /*if(global.level[col,row].type == "wall" 
+        &amp;&amp; global.level[up,left].type == "empty"
+        &amp;&amp; global.level[up,right].type == "empty"
+        &amp;&amp; global.level[up,row].type == "empty"
+        &amp;&amp; global.level[down,right].type == "empty"
+        &amp;&amp; global.level[down,left].type == "empty"
+        &amp;&amp; global.level[down,row].type == "empty"
+        &amp;&amp; global.level[col,left].type == "empty"
+        &amp;&amp; global.level[col,right].type == "empty")
+        {
+            global.level[col,row].makeTorch = true
+        }*///with tilesets torches are hidden behind a "phantom block"
+        
+        if(global.level[col,row].type == "wall" 
+        &amp;&amp; (global.level[up,left].type == "empty"
+        || global.level[up,right].type == "empty"
+        || global.level[up,row].type == "empty"
+        || global.level[down,right].type == "empty"
+        || global.level[down,left].type == "empty"
+        || global.level[down,row].type == "empty"
+        || global.level[col,left].type == "empty"
+        || global.level[col,right].type == "empty"))
+        {
+        tile_add(stoneWallTileset, irandom_range(0,3)*16, irandom_range(0,3)*16, 16, 16, col*16, row*16, 0)
+        if(action_if_dice(10))
+        {
+        tile_add(vineTileset, irandom_range(0,3)*16, irandom_range(0,3)*16, 16, 16, col*16, row*16, -1)       
+        }
+        }
+        /*if(global.level[col,row].type == "wall" 
+        &amp;&amp; global.level[up,left].type == "wall"
+        &amp;&amp; global.level[up,right].type == "wall"
+        &amp;&amp; global.level[up,row].type == "wall"
+        &amp;&amp; global.level[down,right].type == "wall"
+        &amp;&amp; global.level[down,left].type == "wall"
+        &amp;&amp; global.level[down,row].type == "wall"
+        &amp;&amp; global.level[col,left].type == "wall"
+        &amp;&amp; global.level[col,right].type == "wall")
+        {
+        tile_add(shadingTileset, 96, 0, 16, 16, col*16, row*16, 0)
+        }
+        */
+        
+    }
+}
+
+//sets values of wall that will later be used to decide what shader to use
+for(row = 1; row &lt; (array_length_2d(global.level, 0))-1; row++){
+    for(col = 1; col &lt; (array_height_2d(global.level))-1; col++){
+        
+        if(global.level[col, row].type == "empty"){
+            
+            var right = global.level[col+1, row].type != "empty";
+            var left = global.level[col-1, row].type != "empty";
+            var top = global.level[col, row-1].type != "empty";
+            var bottom = global.level[col, row+1].type != "empty";
+            
+            var top_right = global.level[col+1, row-1].type != "empty";
+            var top_left = global.level[col-1, row-1].type != "empty";
+            var bottom_right = global.level[col+1, row+1].type != "empty";
+            var bottom_left = global.level[col-1, row+1].type != "empty";
+            
+            shaderMap[col,row].empty = 1;
+            
+            if(right)
+                shaderMap[col+1,row].left+=2;
+            if(left)
+                shaderMap[col-1,row].right+=2;
+            if(top)
+                shaderMap[col,row-1].bottom+=2;
+            if(bottom)
+                shaderMap[col,row+1].top+=2;
+            
+            
+            if(top_right &amp;&amp; top &amp;&amp; right){
+                shaderMap[col+1,row-1].left++;
+                shaderMap[col+1,row-1].bottom++;                
+                shaderMap[col+1,row-1].inner++;
+                shaderMap[col+1,row-1].top_right++;//this is to differentiate the final 2 shading types, which are completly similar in LRUD metrics
+            }
+            if(top_left &amp;&amp; top &amp;&amp; left){
+                shaderMap[col-1,row-1].right++;
+                shaderMap[col-1,row-1].bottom++;
+                shaderMap[col-1,row-1].inner++;
+            }
+            if(bottom_right &amp;&amp; bottom &amp;&amp; right){
+                shaderMap[col+1,row+1].left++;
+                shaderMap[col+1,row+1].top++;
+                shaderMap[col+1,row+1].inner++;
+            }
+            if(bottom_left &amp;&amp; bottom &amp;&amp; left){
+                shaderMap[col-1,row+1].right++;
+                shaderMap[col-1,row+1].top++;
+                shaderMap[col-1,row+1].inner++;
+            }         
+        }
+    }
+}
+
+//update shaders
+for(row = 0; row &lt; (array_length_2d(global.level, 0)); row++){
+    for(col = 0; col &lt; (array_height_2d(global.level)); col++){
+        shaderMap[col,row].update = true;
+    }
+}
+
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//kill the loading screen
+with(loading_screen){
+    text = 'Done!'
+    done = true;
+}
+</string>
           </argument>
         </arguments>
       </action>
@@ -95,30 +484,6 @@ if(ds_list_size(global.rooms) &gt; 1){
       </action>
       <action>
         <libid>1</libid>
-        <id>611</id>
-        <kind>6</kind>
-        <userelative>-1</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>global.wormsDone</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>0</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
         <id>603</id>
         <kind>7</kind>
         <userelative>0</userelative>
@@ -133,8 +498,11 @@ if(ds_list_size(global.rooms) &gt; 1){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//TODO add var infront of for loops etc
+            <string>//init 
+
 global.rooms = ds_list_create();
+global.wormsDone = 0;
+
 
 //init array
 var row,col;
@@ -155,6 +523,38 @@ for(col = 0; col &lt; room_width/16; col++ ){
         shaderMap[col, row] = instance_create(col*16, row*16, shader);
     }
 }    
+
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(DEBUG) exit;
+//start loading screen
+instance_create(0,0,loading_screen);
+with(loading_screen){
+    show = true;
+    text = 'Createing rooms...'
+}
+
+//dig around map
+start_worms();
 
 
 </string>
@@ -197,6 +597,48 @@ for(col = 0; col &lt; room_width/16; col++ ){
       </action>
     </event>
     <event eventtype="9" enumb="32">
+      <action>
+        <libid>1</libid>
+        <id>612</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>-1</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_if_variable</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>0</kind>
+            <string>DEBUG</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>true</string>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>0</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>422</id>
+        <kind>1</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
       <action>
         <libid>1</libid>
         <id>611</id>
@@ -271,8 +713,64 @@ global.level[col,row].makeEmpty = true;
         <relative>0</relative>
         <isnot>0</isnot>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>424</id>
+        <kind>2</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
     </event>
     <event eventtype="9" enumb="18">
+      <action>
+        <libid>1</libid>
+        <id>612</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>-1</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_if_variable</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>0</kind>
+            <string>DEBUG</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>true</string>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>0</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>422</id>
+        <kind>1</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
       <action>
         <libid>1</libid>
         <id>201</id>
@@ -413,8 +911,64 @@ global.level[col,row].makeEmpty = true;
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>424</id>
+        <kind>2</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
     </event>
     <event eventtype="9" enumb="17">
+      <action>
+        <libid>1</libid>
+        <id>612</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>-1</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_if_variable</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>0</kind>
+            <string>DEBUG</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>true</string>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>0</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>422</id>
+        <kind>1</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -431,8 +985,7 @@ global.level[col,row].makeEmpty = true;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//reset shader values
-
+            <string>//init
 image_index = 24;
 
 left = 0;
@@ -523,7 +1076,7 @@ for(col = 0; col &lt; (room_width/16); col++ ){
     }
 }
 
-
+//sets values of wall that will later be used to decide what shader to use
 for(row = 1; row &lt; (array_length_2d(global.level, 0))-1; row++){
     for(col = 1; col &lt; (array_height_2d(global.level))-1; col++){
         
@@ -588,6 +1141,20 @@ for(row = 0; row &lt; (array_length_2d(global.level, 0)); row++){
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>424</id>
+        <kind>2</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+      </action>
     </event>
     <event eventtype="9" enumb="13">
       <action>
@@ -607,6 +1174,34 @@ for(row = 0; row &lt; (array_length_2d(global.level, 0)); row++){
           <argument>
             <kind>1</kind>
             <string>connect rooms</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>612</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>-1</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_if_variable</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>0</kind>
+            <string>DEBUG</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>true</string>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>0</string>
           </argument>
         </arguments>
       </action>
