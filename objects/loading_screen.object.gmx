@@ -31,8 +31,61 @@ show = false;
 text = 'Loading...'
 done = false;
 
-alpha = 255;
+alpha = 1;
+
+bar_max = 100;
+bar_progress = 0;
 </string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>611</id>
+        <kind>6</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>-1</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>alpha</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>-0.05</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>301</id>
+        <kind>0</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_set_alarm</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>0</kind>
+            <string>1</string>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>0</string>
           </argument>
         </arguments>
       </action>
@@ -82,6 +135,30 @@ alpha = 255;
       </action>
       <action>
         <libid>1</libid>
+        <id>301</id>
+        <kind>0</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_set_alarm</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>0</kind>
+            <string>1</string>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>0</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
         <id>611</id>
         <kind>6</kind>
         <userelative>-1</userelative>
@@ -91,16 +168,64 @@ alpha = 255;
         <functionname></functionname>
         <codestring></codestring>
         <whoName>self</whoName>
-        <relative>-1</relative>
+        <relative>0</relative>
         <isnot>0</isnot>
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>alpha</string>
+            <string>bar_progress</string>
           </argument>
           <argument>
             <kind>0</kind>
-            <string>-1</string>
+            <string>bar_max</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>611</id>
+        <kind>6</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>text</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>"Done!"</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>611</id>
+        <kind>6</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>done</string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string>false</string>
           </argument>
         </arguments>
       </action>
@@ -206,25 +331,29 @@ alpha = 255;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>ww = window_get_width();
-wh = window_get_height();
+            <string>var ww = window_get_width();
+var wh = window_get_height();
 
 draw_set_alpha(alpha);
-
 draw_set_color(c_black);
 draw_rectangle(0,0,ww,wh,false);
 
 if(show){
     draw_set_color(make_colour_rgb(25, 25, 25));
     draw_rectangle(64,(wh/2)-32,ww-64,(wh/2)+32, false);
-
-    draw_set_color(make_colour_rgb(25, 200, 25));
-    draw_rectangle(80,(wh/2)-16,ww-80,(wh/2)+16, false);    
     
+    //draw progress bar
+    draw_set_color(make_colour_rgb(25, 200, 25));
+    var bar_length = ((ww - 160)/bar_max)*bar_progress;
+    draw_rectangle(80,(wh/2)-16,80+bar_length,(wh/2)+16, false);    
+    
+    //draw text
     draw_set_color(c_white);
     draw_set_halign(fa_center);
     draw_text(ww/2, (wh/2)+64, text);   
 }
+
+draw_set_alpha(1);
 </string>
           </argument>
         </arguments>
